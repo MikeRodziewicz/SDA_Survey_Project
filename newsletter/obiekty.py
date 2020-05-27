@@ -1,3 +1,7 @@
+# pewnie mozna to zrobic z jedna klasa ale chcialem pocwiczyc
+# najpierw tworzymy usera zgodnie z tymi wymaganiami, oraz dajemy mu __repr__
+# po to, zeby moc wyswietlac dane w naszej funkcji show_all
+
 class User:
 
     def __init__(self, first_name, last_name, email, active = True):
@@ -9,7 +13,8 @@ class User:
     def __repr__(self):
         return f"Imie: {self.first_name}, Nazwisko: {self.last_name}, e-mail: {self.email}"
 
-
+# tutaj mamy liste userow, oraz opcje manipulowania nimi, czyli jak przywolujemy funkcje w app.py to
+# tak serio uzywamy metod, ktore sa juz wewnatrz klas
 class Lista:
 
     def __init__(self):
