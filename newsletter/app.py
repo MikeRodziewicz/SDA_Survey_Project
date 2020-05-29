@@ -1,6 +1,6 @@
 # import smtplib do wysylania mejli oraz klas z pliku obiekty
 # TODO testy dla app,py i obiekty.py
-# TODO naprawic breaklook i exit func, bo wykonuja program jeszcze jeden raz niepotrzebnie
+#
 import smtplib
 from newsletter import obiekty
 import re

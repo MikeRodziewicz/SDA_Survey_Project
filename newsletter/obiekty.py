@@ -25,7 +25,7 @@ class Lista:
         self.lista.append(user)
         self.lista_mejli.append(user.email)
 
-    def remove_user(self,user):
+    def remove_user(self, user):
         self.lista.remove(user)
 
     def show_users(self):
