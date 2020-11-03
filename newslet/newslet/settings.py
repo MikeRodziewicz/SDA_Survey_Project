@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'newsletter',
         'USER': 'postgres',
-        'PASSWORD': os.environ.get('DB_PASS'),
+        'PASSWORD': 
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -130,5 +130,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+EMAIL_HOST_USER =
+EMAIL_HOST_PASSWORD =
