@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from website.apps import WebsiteConfig
+from users.apps import UsersConfig
 import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,13 +36,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
+    'website.apps.WebsiteConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'website'
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [

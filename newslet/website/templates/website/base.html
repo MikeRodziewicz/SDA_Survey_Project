@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="{% static 'website/main.css'%}">
   </head>
   <body>
+  <div>
+  <h1>Welcome to the newspage</h1>
+      {% if user.is_authenticated %}
+        <ul>
+          <li><a href="#">something_1</a></li>
+          <li><a href="#">something_2</a></li>
+          <li><a href="#">something_3</a></li>
+        </ul>
+        {% endif %}
+  </div>
+  {% block content %} {% endblock %}
 
   </body>
 </html>
