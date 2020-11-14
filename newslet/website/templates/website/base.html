@@ -5,16 +5,15 @@
   <head>
     <meta charset="utf-8">
     <title>NewsPlace</title>
-    <link rel="stylesheet" href="{% static 'website/main.css'%}">
   </head>
   <body>
   <div>
   <h1>Welcome to the newspage</h1>
       {% if user.is_authenticated %}
         <ul>
-          <li><a href="#">something_1</a></li>
-          <li><a href="#">something_2</a></li>
-          <li><a href="#">something_3</a></li>
+          <li><a href="{% url 'website-about' %}">ABOUT</a></li>
+          <li><a href="{% url 'users-register' %}">Register</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
         </ul>
         {% endif %}
   </div>

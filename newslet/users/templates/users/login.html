@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+                <legend>Join today</legend>
+                {{ form }}
+                <button class="" type="submit">Log in</button>
+        </fieldset>
+  </body>
+</html>

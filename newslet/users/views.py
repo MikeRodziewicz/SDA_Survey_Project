@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegister
 
 
@@ -7,8 +8,7 @@ def register(request):
         form = UserRegister(request.POST)
         if form.is_valid():
             form.save()
-            email = form.cleaned_data('username')
-            return redirect('home')
+            return redirect('website-home')
     else:
         form = UserRegister()
-    return render(request, 'users/register.html', {form:'form'})
+    return render(request, 'users/register.html', {'form': form})

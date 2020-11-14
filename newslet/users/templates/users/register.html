@@ -1,10 +1,20 @@
-{% extends "website/base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+                            <legend>Join today</legend>
+                              {{ form }}
+                        </fieldset>
 
-  <form method="POST">
-      {% csrf_token %}
-      {{ form.email}}
 
-      <button class="" type="submit">Sign Up</button>
+        <button class="" type="submit">Sign Up</button>
+        <button><a href="{% url 'website-home' %}">Home</a></button>
 
-{% endblock content %}
+  </body>
+</html>
