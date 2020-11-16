@@ -1,6 +1,10 @@
 {% extends "website/base.html" %}
+{% load static %}
 {% block content %}
 
         <h1> ABOUT</h1>
+        {% csrf_token %}
+        {{ category  }}
+
 
 {% endblock content %}
