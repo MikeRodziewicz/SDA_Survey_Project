@@ -13,6 +13,8 @@
       {% if user.is_authenticated %}
         <ul>
           <li><a href="{% url 'website-about' %}">ABOUT</a></li>
+          <li><a href="{% url 'add_category' %}">Add Category</a></li>
+          <li><a href="{% url 'add_tag' %}">Add Tag</a></li>
           <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
       {% else %}
