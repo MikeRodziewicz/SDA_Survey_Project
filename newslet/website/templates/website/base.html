@@ -8,8 +8,10 @@
     <title>NewsPlace</title>
   </head>
   <body>
+
+
   <div>
-  <h1>Welcome to the newspage</h1>
+  <nav>
       {% if user.is_authenticated %}
         <ul>
           <li><a href="{% url 'website-about' %}">ABOUT</a></li>
@@ -22,6 +24,7 @@
       <li><a href="{% url 'login' %}">Login</a></li>
       {% endif %}
   </div>
+  <nav>
   {% block content %} {% endblock %}
 
   </body>

@@ -5,6 +5,10 @@ from django.views.generic import ListView
 from .models import NewsCategory
 from .forms import NewsCategoryForm, NewsTagsForm
 from django.contrib.auth.decorators import login_required
+from django.views.generic import (
+    ListView,
+    DetailView
+)
 
 def home(request):
     return render(request, 'website/home.html')
@@ -36,3 +40,6 @@ def add_tag(request):
     else:
         form = NewsTagsForm()
     return render(request, 'website/create_tag.html', {'form':form})
+
+class NewsCategoryDetailView(DetailView):
+    model = NewsCategory
