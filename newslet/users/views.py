@@ -7,6 +7,7 @@ def register(request):
     if request.method == 'POST':
         form = UserRegister(request.POST)
         if form.is_valid():
+            username = form.cleaned_data.get('username')
             form.save()
             return redirect('website-home')
     else:
