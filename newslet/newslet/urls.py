@@ -18,9 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from website import views as website_views
 from users import views as user_views
+from surveys import views as surveys_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
-    path('', include('users.urls'))
-]
+    path('', include('users.urls')),
+    path('', include('surveys.urls'))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

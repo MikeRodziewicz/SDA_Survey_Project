@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from website.apps import WebsiteConfig
 from users.apps import UsersConfig
+from surveys.apps import SurveysConfig
 import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +38,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'website.apps.WebsiteConfig',
+    'surveys.apps.SurveysConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
