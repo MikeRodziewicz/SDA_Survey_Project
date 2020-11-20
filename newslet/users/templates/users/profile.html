@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2 class="account-heading">{{ user.username }}</h2>
+           <p class="text-secondary">{{ user.email }}</p>
+
+
+            <h1> ABOUT</h1>
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ u_form }}
+            {{ p_form }}
+            <button type="submit">Update</button>
+            </form>
+
+
+<a href="{% url 'website-home' %}">Home</a>
+  </body>
+</html>
