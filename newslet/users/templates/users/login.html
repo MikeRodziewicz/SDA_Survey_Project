@@ -14,13 +14,10 @@
       {{ form }}
     </div>
     <button class="" type="submit">Log In</button>
-<!--
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-                <legend>Join today</legend>
-                {{ form }}
-                <button class="" type="submit">Log in</button>
-        </fieldset> -->
+
+
+    <div class="">
+      <button><a href="{% url 'password-reset' %}">Forgot Your Password?</a></button>
+    </div>
   </body>
 </html>
