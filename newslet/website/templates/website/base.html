@@ -15,6 +15,8 @@
       {% if user.is_authenticated %}
         <ul>
           <li><a href="{% url 'website-about' %}">ABOUT</a></li>
+          <li><a href="{% url 'add_category' %}">Add Category</a></li>
+          <li><a href="{% url 'add_tag' %}">Add Tag</a></li>
           <li><a href="{% url 'logout' %}">Logout</a></li>
           <li><a href="{% url 'profile' %}">Profile</a></li>
 
@@ -22,12 +24,17 @@
       {% else %}
       <li><a href="{% url 'users-register' %}">Register</a></li>
       <li><a href="{% url 'login' %}">Login</a></li>
-      <li><a href="{% url 'sign_up' %}">Sign up for a Surveys</a></li>
-
       {% endif %}
   </div>
   <nav>
+
   {% block content %} {% endblock %}
+      <h1> Formularz </h1>
+      <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form }}
+      <button type=submit>subbmit</button>
+      </form>
 
   </body>
 </html>

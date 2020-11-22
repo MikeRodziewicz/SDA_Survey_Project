@@ -1,8 +1,33 @@
 from django import forms
-from .models import GuestSurvey
+from django.forms import CharField
+from .models import NewsCategory, NewsTags, Formularz
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit
 
+class FormularzForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            'imie',
+            'email',
+            Submit('submit', 'Add product', css_class="btn-success"),
+            )
 
-class GuestSurveyForm(forms.ModelForm):
     class Meta:
-        model = GuestSurvey
-        fields = ['guest_name', 'quest_email']
+        model = Formularz
+        fields = ['imie', 'email']
+
+class NewsTagsForm(forms.ModelForm):
+    tag_name = forms.CharField()
+
+    class Meta:
+        model = NewsTags
+        fields = ['tag_name']
+
+class NewsCategoryForm(forms.ModelForm):
+    category_name  = forms.CharField()
+
+    class Meta:
+        model = NewsCategory
+        fields = ['category_one', 'assigned_tag']
