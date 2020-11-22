@@ -1,45 +1,27 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.mail import send_mail
-from django.views.generic import ListView
-from .models import NewsCategory
-from .forms import NewsCategoryForm, NewsTagsForm
+from .forms import  GuestSurveyForm
 from django.contrib.auth.decorators import login_required
-from django.views.generic import (
-    ListView,
-    DetailView
-)
+
 
 def home(request):
     return render(request, 'website/home.html')
 
 
 def about(request):
-    return render(request, 'website/about.html', {'category':NewsCategory.objects.all()})
+    return render(request, 'website/about.html')
 
 
-
-def add_category(request):
+def sign_up(request):
     if request.method == 'POST':
-        form = NewsCategoryForm(request.POST)
+        form = GuestSurveyForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('website-home')
+            return redirect('survey_thanks')
     else:
-        form = NewsCategoryForm()
-    return render(request, 'website/create_category.html', {'form':form})
+        form = GuestSurveyForm()
+    return render(request, 'website/survey_sign_up.html', {'form':form})
 
-
-
-def add_tag(request):
-    if request.method == 'POST':
-        form = NewsTagsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('website-home')
-    else:
-        form = NewsTagsForm()
-    return render(request, 'website/create_tag.html', {'form':form})
-
-class NewsCategoryDetailView(DetailView):
-    model = NewsCategory
+def survey_thanks(request):
+    return render(request, 'website/survey_thanks.html')
