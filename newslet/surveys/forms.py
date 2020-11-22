@@ -6,7 +6,7 @@ import math
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 
-from .models import Product
+from .models import Product, Company, Survey
 
 
 def truncate(number, digits):
@@ -25,7 +25,7 @@ class CompanyForm(forms.ModelForm):
             )
 
     class Meta:
-        model = Product
+        model = Company
         fields = '__all__'
 
 
@@ -63,7 +63,7 @@ class SurveyForm(forms.ModelForm):
             )
 
     class Meta:
-        model = Product
+        model = Survey
         fields = '__all__'
 
     question = forms.CharField()
