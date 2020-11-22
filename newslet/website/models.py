@@ -6,7 +6,7 @@ class Formularz(models.Model):
 
     def __str__(self):
         return self.imie
-        return self.email
+
 
 
 class TestModel(models.Model):
