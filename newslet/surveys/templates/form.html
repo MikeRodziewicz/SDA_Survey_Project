@@ -1,6 +1,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+  {% csrf_token %}
   {% crispy form %}
     <a class="btn btn-outline-success" type="button" href="{% url 'website-home' %}">
             Home
