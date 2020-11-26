@@ -1,5 +1,8 @@
 .idea
 archive
 project_env
-newslet/website/__pycache__
-newslet/surveys/pycache
+!**/__pycache__/
+__pycache__/
+*.pyc
+*.__pycache__
+

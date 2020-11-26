@@ -1,0 +1,9 @@
+{% block content %}
+    <ul>
+        {% for product in object_list %}
+        <li>
+            {{ product.name }} - {{ product.price }}
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
