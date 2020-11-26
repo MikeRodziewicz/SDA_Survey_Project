@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'newslet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'newsletter',
+        'NAME': 'newsletter_two',
         'USER': 'postgres',
         'PASSWORD': os.getenv('DB_PASS'),
         'HOST': 'localhost',

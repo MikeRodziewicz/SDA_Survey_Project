@@ -1,19 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UserRegister, UserProfileUpdateForm, UserUpdateForm
+from .forms import UserRegister, UserProfileUpdateForm, UserUpdateForm, CompanyRegisterForm
 from django.contrib.auth.decorators import login_required
 
 
 def register(request):
     if request.method == 'POST':
         form = UserRegister(request.POST)
-        if form.is_valid():
+        form_1 = CompanyRegisterForm(request.POST)
+        if form.is_valid() and form_1.is_valid():
             username = form.cleaned_data.get('username')
             form.save()
+            form_1.save()
             return redirect('website-home')
     else:
         form = UserRegister()
-    return render(request, 'users/register.html', {'form': form})
+        form_1 = CompanyRegisterForm()
+    return render(request, 'users/register.html', {'form': form, 'form_1':form_1})
 
 
 
