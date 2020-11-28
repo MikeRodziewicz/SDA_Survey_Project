@@ -6,3 +6,4 @@ class GuestSurveyForm(forms.ModelForm):
     class Meta:
         model = GuestSurvey
         fields = ['guest_name', 'quest_email']
+

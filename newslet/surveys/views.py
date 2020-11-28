@@ -1,6 +1,10 @@
+from django.shortcuts import render
+from website.models import GuestSurvey
+from django.contrib.auth.decorators import login_required
 from django import views
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from .forms import ProductForm, CompanyForm, SurveyForm
 from .models import Product, Company
