@@ -8,10 +8,12 @@
 
 {% block content %}
     <ul>
-        {% for product in object_list %}
+        {% for company in object_list %}
         <li>
-            {{ product.name }} - {{ product.price }}
+            {{ company.name }}
         </li>
         {% endfor %}
     </ul>
+
+    <button><a href="{% url 'website-home' %}">Home</a></button>
 {% endblock %}

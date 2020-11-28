@@ -7,17 +7,26 @@
   <body>
     <h2 class="account-heading">{{ user.username }}</h2>
     <p class="text-secondary">{{ user.email }}</p>
+    <p>{{profile.objects.company}} somethi</p>
     <img src="{{ user.profile.image.url}}" alt="">
 
 
-            <h1> ABOUT</h1>
+            <h1> Your profile</h1>
             <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ u_form }}
-            {{ p_form }}
+            {{ p_form.name }}
+            {{ p_form.image }}
+            
+
+            <h2>Your company</h2>
+            
+            {{ p_form.user_company }}
             <button type="submit">Update</button>
             </form>
 
+            <h2>Missing company? Go ahead and register your business with us</h2>
+            <a href="{% url 'company_create' %}">Add Company</a>
 
 <a href="{% url 'website-home' %}">Home</a>
   </body>

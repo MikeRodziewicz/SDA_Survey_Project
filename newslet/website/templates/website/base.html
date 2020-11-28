@@ -14,26 +14,20 @@
   <nav>
       {% if user.is_authenticated %}
         <ul>
-          <li><a href="{% url 'website-about' %}">ABOUT</a></li>
           <li><a href="{% url 'logout' %}">Logout</a></li>
           <li><a href="{% url 'profile' %}">Profile</a></li>
-          <li><a href="{% url 'send_surveys' %}">Send them Out</a></li>
-          <li><a href="{% url 'product_create' %}">Add Product</a></li>
-          <li><a href="{% url 'products_list' %}">Products List</a></li>
-          <li><a href="{% url 'company_create' %}">Add Company</a></li>
           <li><a href="{% url 'companies' %}">Companies</a></li>
-          <li><a href="{% url 'survey_create' %}">Add Survey</a></li>
-          <li><a href="{% url 'winners' %}">Winners</a></li>
         </ul>
       {% else %}
-      <li><a href="{% url 'users-register' %}">Register</a></li>
+      <ul>
+      <li><a href="{% url 'website-about' %}">About</a></li>
       <li><a href="{% url 'login' %}">Login</a></li>
-      <li><a href="{% url 'sign_up' %}">Sign up for a Surveys</a></li>
-
+      <li><a href="{% url 'password-reset' %}">Forgotten Your Password?</a></li>
       {% endif %}
   </div>
   <nav>
-  {% block content %} {% endblock %}
+  {% block content %}   
+  {% endblock %}
 
   </body>
 </html>

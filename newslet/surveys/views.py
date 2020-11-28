@@ -12,11 +12,12 @@ from website.mixins import TitleMixin
 
 from django.shortcuts import render
 from .random_users import random_users_emails_list
+from django.views.generic import CreateView
 
 
 def winners(request):
     return render(
-        request, template_name='random_users.html',
+        request, template_name='surveys/random_users.html',
         context={'winners': random_users_emails_list()}
     )
 
@@ -24,31 +25,31 @@ def winners(request):
 class CompanyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
     title = 'Add Company'
     form_class = CompanyForm
-    template_name = 'form.html'
+    template_name = 'surveys/form.html'
     success_url = reverse_lazy('website-home')
 
 
 class CompanyListView(LoginRequiredMixin, TitleMixin, views.generic.ListView):
     title = 'Companies'
-    template_name = 'company/companies.html'
+    template_name = 'surveys/companies.html'
     model = Company
 
 
 class ProductCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
     title = 'Add Product'
     form_class = ProductForm
-    template_name = 'form.html'
+    template_name = 'surveys/form.html'
     success_url = reverse_lazy('website-home')
 
 
 class ProductListView(LoginRequiredMixin, TitleMixin, views.generic.ListView):
     title = 'Products'
-    template_name = 'products/products_list.html'
+    template_name = 'surveys/products_list.html'
     model = Product
 
 
 class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
     title = 'Add Survey'
     form_class = SurveyForm
-    template_name = 'form.html'
+    template_name = 'surveys/form.html'
     success_url = reverse_lazy('website-home')
