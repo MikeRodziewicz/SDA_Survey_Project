@@ -1,3 +1,11 @@
+<div class="container">
+      <div class="jumbotron">
+        {% block title %}
+          {% if title %}<h1>{{ title }}</h1>{% endif %}
+        {% endblock %}
+      </div>
+</div>
+
 {% block content %}
     <ul>
         {% for product in object_list %}
