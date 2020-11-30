@@ -42,6 +42,14 @@ class ProductCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView
     success_url = reverse_lazy('website-home')
 
 
+class ProductUpdate(LoginRequiredMixin, TitleMixin, views.generic.UpdateView):
+    title = 'Update Product'
+    form_class = ProductForm
+    template_name = 'surveys/form.html'
+    model = Product
+    success_url = reverse_lazy('website-home')
+
+
 class ProductListView(LoginRequiredMixin, TitleMixin, views.generic.ListView):
     title = 'Products'
     template_name = 'surveys/products_list.html'

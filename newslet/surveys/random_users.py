@@ -1,12 +1,13 @@
 from django.contrib.auth.models import User
+from website.models import GuestSurvey
 import random
 
 
 def random_users_emails_list():
     winners = []
-    users_list = User.objects.all()
+    users_list = GuestSurvey.objects.all()
     while True:
-        user = User.objects.filter(id=random.randint(1, len(users_list))).values('email')[0]['email']
+        user = GuestSurvey.objects.filter(id=random.randint(1, len(users_list))).values('quest_email')[0]['quest_email']
         if user in winners:
             continue
         elif len(winners) == 3:
@@ -17,5 +18,5 @@ def random_users_emails_list():
 
 def random_user_email():
     users_list = User.objects.all()
-    return User.objects.filter(id=random.randint(1, len(users_list))).values('email')[0]['email']
+    return GuestSurvey.objects.filter(id=random.randint(1, len(users_list))).values('quest_email')[0]['quest_email']
 
