@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "website/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
     <ul>
         <li>{{ winners.0 }}</li>
         <li>{{ winners.1 }}</li>
         <li>{{ winners.2 }}</li>
     </ul>
-
-
-    <button><a href="{% url 'website-home' %}">Home</a></button>
-</body>
-</html>
+{% endblock %}

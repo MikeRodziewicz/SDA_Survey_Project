@@ -4,15 +4,14 @@ from django.contrib.auth.decorators import login_required
 from django import views
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.html import escape
+from django.utils.safestring import SafeString
 
+from website.mixins import TitleMixin
 
 from .forms import ProductForm, CompanyForm, SurveyForm
 from .models import Product, Company
-from website.mixins import TitleMixin
-
-from django.shortcuts import render
 from .random_users import random_users_emails_list
-from django.views.generic import CreateView
 
 
 def winners(request):
@@ -47,7 +46,25 @@ class ProductUpdate(LoginRequiredMixin, TitleMixin, views.generic.UpdateView):
     form_class = ProductForm
     template_name = 'surveys/form.html'
     model = Product
-    success_url = reverse_lazy('website-home')
+    success_url = reverse_lazy('products_list')
+
+
+class ProductDelete(LoginRequiredMixin, TitleMixin, views.generic.DeleteView):
+    template = 'surveys/product_confirm_delete.html'
+    model = Product
+    success_url = reverse_lazy('products_list')
+
+    def get_title(self):
+        safe_title = escape(self.object.name)
+        return SafeString(f'Delete <em>{safe_title}</em>')
+
+
+class ProductDetail(LoginRequiredMixin, TitleMixin, views.generic.DetailView):
+    template = 'surveys/product_detail.html'
+    model = Product
+
+    def get_title(self):
+        return self.object.name
 
 
 class ProductListView(LoginRequiredMixin, TitleMixin, views.generic.ListView):

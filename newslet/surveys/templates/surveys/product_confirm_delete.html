@@ -1,0 +1,15 @@
+{% extends "website/base.html" %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete product "{{ object.name }}" from database?
+        </p>
+        <input type="submit" value="Submit" class="btn btn-success">
+        <a class="btn btn-outline-danger" type="button" href="{% url 'products_list' %}">
+            Cancel
+        </a>
+    </form>
+{% endblock %}
