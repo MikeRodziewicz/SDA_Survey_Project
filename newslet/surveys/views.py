@@ -46,7 +46,7 @@ class ProductUpdate(LoginRequiredMixin, TitleMixin, views.generic.UpdateView):
     form_class = ProductForm
     template_name = 'surveys/form.html'
     model = Product
-    success_url = reverse_lazy('products_list')
+    success_url = reverse_lazy('website-home')
 
 
 class ProductDelete(LoginRequiredMixin, TitleMixin, views.generic.DeleteView):
@@ -77,4 +77,9 @@ class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView)
     title = 'Add Survey'
     form_class = SurveyForm
     template_name = 'surveys/form.html'
+
+    def form_valid(self, form):
+        form.instance.product_id = self.kwargs['pk']
+        return super().form_valid(form)
+    
     success_url = reverse_lazy('website-home')

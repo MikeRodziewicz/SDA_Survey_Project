@@ -3,8 +3,11 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+<form method="POST">
     {% csrf_token %}
-    {% crispy form %}
+    {{ form }}
+    <button class="" type="submit">submit</button>
+    <br>
     <a class="btn btn-outline-danger" type="button" href="{% url 'website-home' %}">
         Cancel
     </a>

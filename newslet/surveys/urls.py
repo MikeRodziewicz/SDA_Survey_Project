@@ -14,6 +14,6 @@ urlpatterns = [
     path('send_surveys/<int:pk>', send_surveys, name='send_surveys'),
     path('surveys/add_company', CompanyCreateView.as_view(), name='company_create'),
     path('surveys/companies', CompanyListView.as_view(), name='companies'),
-    path('surveys/add_survey', SurveyCreateView.as_view(), name='survey_create'),
+    path('surveys/add_survey/<int:pk>', SurveyCreateView.as_view(), name='survey_create'),
     path('surveys/winners', winners, name='winners')
 ]

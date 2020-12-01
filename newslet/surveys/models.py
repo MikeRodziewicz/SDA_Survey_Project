@@ -11,6 +11,7 @@ class Company(models.Model):
 
 
 class Product(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=128)
     price = models.FloatField()
 
@@ -19,7 +20,6 @@ class Product(models.Model):
 
 
 class Survey(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
     rate_1 = models.IntegerField()
     rate_2 = models.IntegerField()
@@ -29,4 +29,4 @@ class Survey(models.Model):
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.question
+        return self.product.name
