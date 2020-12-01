@@ -1,16 +1,11 @@
+{% extends "website/base.html" %}
+{% load bootstrap4 %}
 {% load crispy_forms_tags %}
+
 {% block content %}
-
-</div>
-<form method="POST">
-  {% csrf_token %}
-  <fieldset class="form-group">
-                      <legend>Join today</legend>
-                        {{ form }}
-                  </fieldset>
-                  
-
-
-  <button class="" type="submit">Sign Up</button>
-  <button><a href="{% url 'website-home' %}">Home</a></button>
+    {% csrf_token %}
+    {% crispy form %}
+    <a class="btn btn-outline-danger" type="button" href="{% url 'website-home' %}">
+        Cancel
+    </a>
 {% endblock %}

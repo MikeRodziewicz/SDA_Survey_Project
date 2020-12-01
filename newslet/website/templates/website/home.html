@@ -1,7 +1,8 @@
 {% extends "website/base.html" %}
+
 {% block content %}
 {% if user.is_authenticated %}
-
+    <div class="container">
           <li><a href="{% url 'send_surveys' %}">Send them Out</a></li>
           <li><a href="{% url 'product_create' %}">Add Product</a></li>
           <li><a href="{% url 'products_list' %}">Products List</a></li>
@@ -9,8 +10,6 @@
           <li><a href="{% url 'companies' %}">Companies</a></li>
           <li><a href="{% url 'survey_create' %}">Add Survey</a></li>
           <li><a href="{% url 'winners' %}">Winners</a></li>
-
-
-
+    </div>
 {% endif %}
 {% endblock content %}

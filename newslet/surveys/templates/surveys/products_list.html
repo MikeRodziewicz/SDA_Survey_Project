@@ -1,19 +1,18 @@
-<div class="container">
-      <div class="jumbotron">
-        {% block title %}
-          {% if title %}<h1>{{ title }}</h1>{% endif %}
-        {% endblock %}
-      </div>
-</div>
+{% extends "website/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% load surveys_extra %}
 
 {% block content %}
     <ul>
         {% for product in object_list %}
-        <li>
-            {{ product.name }} - {{ product.price }}
-        </li>
+            <li>
+                {% product_format product short=True %}
+                <a href="{% url 'update_product' product.pk %}">update</a> /
+                <a href="{% url 'delete_product' product.pk %}">delete</a> /
+                <a href="{% url 'detail_product' product.pk %}">detail</a> /
+                <a href="{% url 'send_surveys' product.pk %}">send survey</a>
+            </li>
         {% endfor %}
     </ul>
-
-    <button><a href="{% url 'website-home' %}">Home</a></button>
 {% endblock %}
