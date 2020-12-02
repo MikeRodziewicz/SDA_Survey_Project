@@ -3,7 +3,6 @@
 {% block content %}
 {% if user.is_authenticated %}
     <div class="container">
-          <li><a href="{% url 'send_surveys' %}">Send them Out</a></li>
           <li><a href="{% url 'product_create' %}">Add Product</a></li>
           <li><a href="{% url 'products_list' %}">Products List</a></li>
           <li><a href="{% url 'company_create' %}">Add Company</a></li>

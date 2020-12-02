@@ -9,6 +9,15 @@ from django.utils.safestring import SafeString
 
 from website.mixins import TitleMixin
 
+from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.contrib import messages
+from django.template.loader import render_to_string
+from website.forms import  GuestSurveyForm
+from website.models import GuestSurvey
+
+
 from .forms import ProductForm, CompanyForm, SurveyForm
 from .models import Product, Company
 from .random_users import random_users_emails_list
@@ -83,3 +92,20 @@ class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView)
         return super().form_valid(form)
     
     success_url = reverse_lazy('website-home')
+
+
+
+def send_surveys(request, pk):
+    template = render_to_string('website/survery_invitation.html',{'pk':pk})
+    receipients = GuestSurvey.objects.all().values_list('quest_email', flat=True)
+    email = EmailMessage(
+    'please take the survey',
+    template,
+    settings.EMAIL_HOST_USER,
+    bcc=receipients,
+    )
+    email.fail_silently=False
+    email.send()
+
+    messages.success(request,f'Surveys Sent!')
+    return render(request, 'website/send_surveys.html')

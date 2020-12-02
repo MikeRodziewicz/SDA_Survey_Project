@@ -11,7 +11,7 @@
                 <a href="{% url 'update_product' product.pk %}">update</a> /
                 <a href="{% url 'delete_product' product.pk %}">delete</a> /
                 <a href="{% url 'detail_product' product.pk %}">detail</a> /
-                <a href="{% url 'survey_create' product.pk %}">send survey</a>
+                <a href="{% url 'send_surveys' product.pk %}">send survey</a>
             </li>
         {% endfor %}
     </ul>
