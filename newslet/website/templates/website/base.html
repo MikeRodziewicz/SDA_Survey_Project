@@ -12,72 +12,39 @@
     {% block scripts %}{% bootstrap_javascript jquery='full' %}{% endblock %}
   </head>
 
-  <body>           
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container fixed">
-        <a class="navbar-brand" href="{% url 'website-home' %}">Rate!t</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="{% url 'website-home' %}">
-              Home
+  <body class="d-flex flex-column min-vh-100">    
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <a href="{% url 'website-home' %}" class="navbar-brand">Rate!T</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#NavBarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="NavBarMenu">
+        <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{% url 'manage_company' %}" class="nav-link">Manage Your Company</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
             </a>
-            <div class="nav-item dropdown">
-              <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
-                Manage profile
-              </a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'products_list' %}">Product List</a>
-                <a class="dropdown-item" href="{% url 'product_create' %}">Add Product</a>
-              </div>
-            </div>
-          </div>
-          <div class="navbar-nav ml-auto">
-            <div class="nav-item dropdown">
-              {% if user.is_authenticated %}
-                <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
-                  {% if user.first_name %}Hello, {{ user.first_name }}!
-                  {% else %}Hello, {{ user.username }}!{% endif %}
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item text-right" href="{% url 'logout' %}">Logout</a>
-                  <a class="dropdown-item text-right" href="{% url 'profile' %}">Profile</a>
-                </div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
               {% else %}
-                <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown">
-                  You are not logged in.
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item text-right" href="{% url 'login' %}">Login</a>
-                  <a class="dropdown-item text-right" href="{% url 'users-register' %}">Sign up</a>
-                  <a class="dropdown-item text-right" href="{% url 'password-reset' %}">Forgotten Your Password?</a>
-                </div>
-              {% endif %}
-            </div>
-          </div>
+              <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+              <a class="dropdown-item" href="{% url 'password-reset' %}">Forgot Your Password?</a>
+          {% endif %}
+          </li>
         </div>
+        </ul>
       </div>
     </nav>
+ 
      
-
-
      <div class="container">
-      <div class="jumbotron">
-        {% block title %}
-          {% if title %}<h1>{{ title }}</h1>{% endif %}
-        {% endblock %}
         {% block content %}{% endblock content %}
-      </div>
      </div>
-
-<footer class='footer'>
-  <div class="container">
-    <span class="text-muted">SDA final project</span>
-
-  </div>
-</footer>
 
   </body>
 </html>

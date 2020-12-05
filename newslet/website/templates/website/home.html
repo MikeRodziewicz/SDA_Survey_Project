@@ -1,15 +1,41 @@
 {% extends "website/base.html" %}
 {% block content %}
+{% load static%}
 {% if user.is_authenticated %}
-   <div class="container">
-          <li><a href="{% url 'product_create' %}">Add Product</a></li>
-          <li><a href="{% url 'products_list' %}">Products List</a></li>
-          <li><a href="{% url 'winners' %}">Winners</a></li>
-          <li><a href="{% url 'manage_company' %}">Average</a></li>
-    </div>
+
+<div class="container">
+       
+    <li><a href="{% url 'product_create' %}">Add Product</a></li>
+    <li><a href="{% url 'products_list' %}">Products List</a></li>
+    <li><a href="{% url 'winners' %}">Winners</a></li>
+    <li><a href="{% url 'manage_company' %}">Average</a></li>
+</div>
+
 {%else%}
-<button><a href="{% url 'sign_up' %}">Sign Up For Surveys</a></button><br>
-<button><a href="{% url 'users-register' %}">Register Company</a></button>
+<div class="jumbotron">
+<div class="row col-sm-12 align-justify">
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'website/survey.png' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{% url 'sign_up' %}" class="btn btn-primary">Sign Up For Surveys</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <img src="{% static 'website/register.jpeg' %}" class=card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{% url 'users-register' %}" class="btn btn-primary">Register Company</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endif %}
 {% endblock content %}
