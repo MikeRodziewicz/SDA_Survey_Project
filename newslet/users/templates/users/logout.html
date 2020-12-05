@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Logout</title>
-  </head>
-  <body>
+{% extends "website/base.html" %}
+
+{% block content %}
 
   <h1>You have been logged out</h1>
   <a href="{% url 'login' %}">Login Again</a>
   <a href="{% url 'website-home' %}">Home</a>
 
-  </body>
-</html>
+  {% endblock %}

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+{% extends "website/base.html" %}
+
+{% block content %}
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
@@ -20,5 +16,4 @@
         <button class="" type="submit">Sign Up</button>
         <button><a href="{% url 'website-home' %}">Home</a></button>
 
-  </body>
-</html>
+        {% endblock %}

@@ -21,11 +21,9 @@ from users import views as user_views
 from surveys import views as surveys_views
 from django.conf import settings
 from django.conf.urls.static import static
-from surveys.models import Company, Product, Survey
 
-admin.site.register(Company)
-admin.site.register(Product)
-admin.site.register(Survey)
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

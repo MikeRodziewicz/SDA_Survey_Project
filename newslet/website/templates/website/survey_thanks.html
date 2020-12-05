@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Thank you</title>
-  </head>
-  <body>
+{% extends "website/base.html" %}
+{% load static %}
+{% block content %}
     <h1>Thank you for signing up!</h1>
     <a href="{% url 'website-home' %}">Home</a>
-  </body>
-</html>
+    {% endblock content %}

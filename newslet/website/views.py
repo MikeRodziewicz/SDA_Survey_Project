@@ -14,8 +14,8 @@ def home(request):
     return render(request, 'website/home.html')
 
 
-def about(request):
-    return render(request, 'website/about.html')
+# def about(request):
+#     return render(request, 'website/about.html')
 
 
 def sign_up(request):
@@ -32,17 +32,4 @@ def survey_thanks(request):
     return render(request, 'website/survey_thanks.html')
 
 
-def send_surveys(request):
-    template = render_to_string('website/survery_invitation.html')
-    receipients = GuestSurvey.objects.all().values_list('quest_email', flat=True)
-    email = EmailMessage(
-    'please take the survey',
-    template,
-    settings.EMAIL_HOST_USER,
-    bcc=receipients,
-    )
-    email.fail_silently=False
-    email.send()
 
-    messages.success(request,f'Surveys Sent!')
-    return render(request, 'website/send_surveys.html')
