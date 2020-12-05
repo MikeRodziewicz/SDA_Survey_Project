@@ -30,13 +30,14 @@ def winners(request):
     )
 
 
+
 class ManageCompany(views.generic.ListView):
     template_name = 'surveys/manage_company.html'
     model = Product
     extra_context = {
-            'products': Product.objects.all()
+            'products': Product.objects.all(),
+            'survey_users': GuestSurvey.objects.all().count(),
         }
-
 
 class CompanyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
     title = 'Add Company'

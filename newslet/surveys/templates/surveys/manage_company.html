@@ -1,10 +1,32 @@
 {% extends "website/base.html" %}
 {% load bootstrap4 %}
 {% load static %}
+{% block content %}
+{% endif %}
 {% load surveys_extra %}
 
 
 {% block content %}
+                             
+{% if user.is_authenticated %}
+<p>Total number of users ready to take the survey: {{survey_users}}</p>
+{% if survey_users > 3%}
+<p>You can create a survey</p>
+{% else %}
+<p>Not enough users to start surveys</p>
+{% endif %}
+
+    <div class="container">
+        <a href="{% url 'product_create' %}"><button type="button" class="btn btn-secondary">Add Product</button></a>
+        {% if survey_users < 5%}
+        <a href="{% url 'winners' %}"><button type="button" class="btn btn-info" disabled>Start Promotion</button></a>
+        {% else %}
+        <a href="{% url 'winners' %}"><button type="button" class="btn btn-info">Start Promotion</button></a>
+        {% endif %}
+    </div>
+    
+                             
+                             
     <ul>
         {% for prod in products %}
         <div class="container">

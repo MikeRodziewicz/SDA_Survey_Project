@@ -10,8 +10,10 @@ def register(request):
         form_1 = CompanyRegisterForm(request.POST)
         if form.is_valid() and form_1.is_valid():
             username = form.cleaned_data.get('username')
-            form.save()
-            form_1.save()
+            company = form_1.save()
+            user = form.save()
+            user.profile.user_company = company
+            user.save()
             return redirect('website-home')
     else:
         form = UserRegister()
@@ -33,7 +35,7 @@ def profile(request):
             return redirect('website-home')
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = UserProfileUpdateForm(instance=request.user)
+        p_form = UserProfileUpdateForm(instance=request.user.profile)
 
     context = {
         'u_form': u_form,
