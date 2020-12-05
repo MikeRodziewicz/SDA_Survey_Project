@@ -30,6 +30,11 @@ def winners(request):
     )
 
 
+
+def manage_company(request):
+    return render(request, template_name='surveys/manage_company.html')
+
+
 class CompanyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
     title = 'Add Company'
     form_class = CompanyForm

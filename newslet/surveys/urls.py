@@ -1,13 +1,14 @@
 from django.urls import path
 
 from .views import ProductCreateView, ProductListView, CompanyCreateView, CompanyListView,\
-    SurveyCreateView, winners, ProductUpdate, ProductDelete, ProductDetail
+    SurveyCreateView, winners, ProductUpdate, ProductDelete, ProductDetail, manage_company
 
 from .views import send_surveys
 from surveys import views
 
 urlpatterns = [
-    path('surveys/add_product', ProductCreateView.as_view(), name='product_create'),
+    path('surveys/add_product/', ProductCreateView.as_view(), name='product_create'),
+    path('surveys/manage_company/', manage_company, name='manage_company'),
     path('surveys/list', ProductListView.as_view(), name='products_list'),
     path('surveys/update/<int:pk>', ProductUpdate.as_view(), name='update_product'),
     path('surveys/delete/<int:pk>', ProductDelete.as_view(), name='delete_product'),
