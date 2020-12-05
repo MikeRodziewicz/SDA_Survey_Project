@@ -1,11 +1,7 @@
 {% extends "website/base.html" %}
 {% load bootstrap4 %}
 {% load static %}
-{% block content %}
-{% endif %}
 {% load surveys_extra %}
-
-
 {% block content %}
                              
 {% if user.is_authenticated %}
@@ -44,5 +40,6 @@
           </div>
         </div>
         {% endfor %}
+        {% endif %}
     </ul>
 {% endblock %}
