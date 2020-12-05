@@ -12,15 +12,15 @@ class Company(models.Model):
         return self.name
 
 
-    def save(self):
-            super().save()
+    def save(self,*args, **kwargs):
+        super().save(*args, **kwargs)
 
-            img = Image.open(self.company_logo.path)
+        img = Image.open(self.company_logo.path)
 
-            if img.height > 300 or img.width > 300:
-                output_size = (300,300)
-                img.thumbnail(output_size)
-                img.save(self.company_logo.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.company_logo.path)
 
 
 class Product(models.Model):
@@ -32,15 +32,15 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self):
-            super().save()
+    def save(self,*args, **kwargs):
+        super().save(*args, **kwargs)
 
-            img = Image.open(self.product_logo.path)
+        img = Image.open(self.product_logo.path)
 
-            if img.height > 300 or img.width > 300:
-                output_size = (300,300)
-                img.thumbnail(output_size)
-                img.save(self.imaproduct_logoge.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.imaproduct_logoge.path)
 
 
 class Survey(models.Model):

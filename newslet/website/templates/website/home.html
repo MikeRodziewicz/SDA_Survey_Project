@@ -4,6 +4,10 @@
   
 
 
+
+{%else%}
+<button><a href="{% url 'sign_up' %}">Sign Up For Surveys</a></button><br>
+<button><a href="{% url 'users-register' %}">Register Company</a></button>
 {% endif %}
 {% endblock content %}
  
