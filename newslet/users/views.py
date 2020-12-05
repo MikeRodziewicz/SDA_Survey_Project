@@ -10,10 +10,10 @@ def register(request):
         form_1 = CompanyRegisterForm(request.POST)
         if form.is_valid() and form_1.is_valid():
             username = form.cleaned_data.get('username')
-            company = form_1.cleaned_data.get('name')
-            print(company)
-            form.save()
-            form_1.save()
+            company = form_1.save()
+            user = form.save()
+            user.profile.user_company = company
+            user.save()
             return redirect('website-home')
     else:
         form = UserRegister()
