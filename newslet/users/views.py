@@ -33,7 +33,7 @@ def profile(request):
             return redirect('website-home')
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = UserProfileUpdateForm(instance=request.user)
+        p_form = UserProfileUpdateForm(instance=request.user.profile)
 
     context = {
         'u_form': u_form,

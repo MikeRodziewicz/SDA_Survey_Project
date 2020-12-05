@@ -3,7 +3,7 @@
 {% block content %}
     <h2 class="account-heading">{{ user.username }}</h2>
     <p class="text-secondary">{{ user.email }}</p>
-    <p>{{profile.objects.company}} somethi</p>
+    <p>{{user.profile.user_company}}</p>
     <img src="{{ user.profile.image.url}}" alt="">
 
 

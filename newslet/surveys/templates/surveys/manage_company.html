@@ -1,8 +1,20 @@
 {% extends "website/base.html" %}
 {% load bootstrap4 %}
 {% load static %}
-
-
 {% block content %}
 
+
+{% if user.is_authenticated %}
+    <div class="container">
+        <a href="{% url 'product_create' %}"><button type="button" class="btn btn-secondary">Add Product</button></a>
+        
+        <a href="{% url 'winners' %}"><button type="button" class="btn btn-info">See the Winners</button></a>
+
+    </div>
+
+    <p>Total number of users ready to take the survey</p>{{query}}
+
+
+
+{% endif %}
 {% endblock %}

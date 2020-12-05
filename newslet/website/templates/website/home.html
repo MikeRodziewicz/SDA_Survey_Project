@@ -1,14 +1,9 @@
 {% extends "website/base.html" %}
-
 {% block content %}
 {% if user.is_authenticated %}
-    <div class="container">
-          <li><a href="{% url 'product_create' %}">Add Product</a></li>
-          <li><a href="{% url 'products_list' %}">Products List</a></li>
-          <li><a href="{% url 'company_create' %}">Add Company</a></li>
-          <li><a href="{% url 'companies' %}">Companies</a></li>
-          <li><a href="{% url 'winners' %}">Winners</a></li>
-    </div>
+  
+
+
 {% endif %}
 {% endblock content %}
  
