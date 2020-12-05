@@ -1,13 +1,16 @@
 {% extends "website/base.html" %}
 {% block content %}
 {% if user.is_authenticated %}
-  
-
-
-
+   <div class="container">
+          <li><a href="{% url 'product_create' %}">Add Product</a></li>
+          <li><a href="{% url 'products_list' %}">Products List</a></li>
+          <li><a href="{% url 'winners' %}">Winners</a></li>
+          <li><a href="{% url 'manage_company' %}">Average</a></li>
+    </div>
 {%else%}
 <button><a href="{% url 'sign_up' %}">Sign Up For Surveys</a></button><br>
 <button><a href="{% url 'users-register' %}">Register Company</a></button>
+
 {% endif %}
 {% endblock content %}
  

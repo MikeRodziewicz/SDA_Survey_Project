@@ -31,13 +31,13 @@ def winners(request):
 
 
 
-def manage_company(request):
-    survey_users = GuestSurvey.objects.all().count()
-    context = {
-        'survey_users':survey_users,
-    }
-    return render(request, template_name='surveys/manage_company.html', context=context)
-
+class ManageCompany(views.generic.ListView):
+    template_name = 'surveys/manage_company.html'
+    model = Product
+    extra_context = {
+            'products': Product.objects.all(),
+            'survey_users': GuestSurvey.objects.all().count(),
+        }
 
 class CompanyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
     title = 'Add Company'
@@ -101,7 +101,6 @@ class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView)
         return super().form_valid(form)
     
     success_url = reverse_lazy('website-home')
-
 
 
 def send_surveys(request, pk):

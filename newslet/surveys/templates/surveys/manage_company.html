@@ -2,8 +2,12 @@
 {% load bootstrap4 %}
 {% load static %}
 {% block content %}
+{% endif %}
+{% load surveys_extra %}
 
 
+{% block content %}
+                             
 {% if user.is_authenticated %}
 <p>Total number of users ready to take the survey: {{survey_users}}</p>
 {% if survey_users > 3%}
@@ -21,7 +25,24 @@
         {% endif %}
     </div>
     
-
- 
-{% endif %}
+                             
+                             
+    <ul>
+        {% for prod in products %}
+        <div class="container">
+          <div class="row">
+            <li> {{ prod.name.capitalize }} full rating: {{ prod | product_full_average }} </li>
+              <div class="container">
+                <div class="col">
+                    <li>Rate 1 {{ prod.name }}: {{ prod | average_rating:'rate_1' }}</li>
+                    <li>Rate 2 {{ prod.name }}: {{ prod | average_rating:'rate_2' }}</li>
+                    <li>Rate 3 {{ prod.name }}: {{ prod | average_rating:'rate_3' }}</li>
+                    <li>Rate 4 {{ prod.name }}: {{ prod | average_rating:'rate_4' }}</li>
+                    <li>Rate 5 {{ prod.name }}: {{ prod | average_rating:'rate_5' }}</li>
+                </div>
+              </div>
+          </div>
+        </div>
+        {% endfor %}
+    </ul>
 {% endblock %}
