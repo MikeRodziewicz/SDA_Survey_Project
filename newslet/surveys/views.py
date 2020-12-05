@@ -30,9 +30,12 @@ def winners(request):
     )
 
 
-
-def manage_company(request):
-    return render(request, template_name='surveys/manage_company.html')
+class ManageCompany(views.generic.ListView):
+    template_name = 'surveys/manage_company.html'
+    model = Product
+    extra_context = {
+            'products': Product.objects.all()
+        }
 
 
 class CompanyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
@@ -97,7 +100,6 @@ class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView)
         return super().form_valid(form)
     
     success_url = reverse_lazy('website-home')
-
 
 
 def send_surveys(request, pk):
