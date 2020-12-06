@@ -1,4 +1,7 @@
 {% extends "website/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% load crispy_forms_tags%}
 
 {% block content %}
     <form method="POST">
@@ -6,8 +9,8 @@
         <fieldset class="form-group">
                             <legend>Join today</legend>
 
-                              {{ form }}
-                              {{ form_1}}
+                              {{ form|crispy }}
+                              {{ form_1|crispy}}
 
                         </fieldset>
                         

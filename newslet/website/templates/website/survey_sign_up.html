@@ -1,12 +1,23 @@
 {% extends "website/base.html" %}
 {% load static %}
+{% load crispy_forms_tags%}
 {% block content %}
 
-        <h1> Sign up for the survey!</h1>
+  <section>
+      <div class="container">
+        <div class="jumbotron text-center">
+        <h1 style="padding-bottom: 15px;"> Sign up for the survey!</h1>
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {{ form }}
-          <button type="submit">Sign Up!</button>
+          {{ form.as_p }}
+          <button class="btn btn-info" type="submit">Sign Up!</button>
         </form>
+        <div style="padding-top: 10px;">
+        <a class="btn btn-warning" href="{% url 'website-home' %}">Home</a>
+      </div>
+        </div> 
+      </div>
+  </section>
 
 {% endblock content %}
+
