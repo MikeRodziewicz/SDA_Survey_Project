@@ -30,6 +30,21 @@ def winners(request):
     )
 
 
+def send_surveys(request, pk):
+    template = render_to_string('website/survery_invitation.html',{'pk':pk})
+    receipients = GuestSurvey.objects.all().values_list('quest_email', flat=True)
+    email = EmailMessage(
+    'please take the survey',
+    template,
+    settings.EMAIL_HOST_USER,
+    bcc=receipients,
+    )
+    email.fail_silently=False
+    email.send()
+
+    messages.success(request,f'Surveys Sent!')
+    return render(request, 'website/send_surveys.html')
+
 
 class ManageCompany(views.generic.ListView):
     template_name = 'surveys/manage_company.html'
@@ -38,18 +53,6 @@ class ManageCompany(views.generic.ListView):
             'products': Product.objects.all(),
             'survey_users': GuestSurvey.objects.all().count(),
         }
-
-class CompanyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
-    title = 'Add Company'
-    form_class = CompanyForm
-    template_name = 'surveys/form.html'
-    success_url = reverse_lazy('website-home')
-
-
-class CompanyListView(LoginRequiredMixin, TitleMixin, views.generic.ListView):
-    title = 'Companies'
-    template_name = 'surveys/companies.html'
-    model = Company
 
 
 class ProductCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
@@ -103,17 +106,3 @@ class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView)
     success_url = reverse_lazy('website-home')
 
 
-def send_surveys(request, pk):
-    template = render_to_string('website/survery_invitation.html',{'pk':pk})
-    receipients = GuestSurvey.objects.all().values_list('quest_email', flat=True)
-    email = EmailMessage(
-    'please take the survey',
-    template,
-    settings.EMAIL_HOST_USER,
-    bcc=receipients,
-    )
-    email.fail_silently=False
-    email.send()
-
-    messages.success(request,f'Surveys Sent!')
-    return render(request, 'website/send_surveys.html')

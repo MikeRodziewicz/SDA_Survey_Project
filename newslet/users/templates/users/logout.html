@@ -1,9 +1,11 @@
 {% extends "website/base.html" %}
-
 {% block content %}
 
-  <h1>You have been logged out</h1>
-  <a href="{% url 'login' %}">Login Again</a>
-  <a href="{% url 'website-home' %}">Home</a>
-
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1>Thanks for the visit ;)</h1>
+    <a class="btn btn-primary" href="{% url 'login' %}">Login Again</a>
+    <a class="btn btn-success" href="{% url 'website-home' %}">Home</a>
+  </div>
+</div>  
   {% endblock %}

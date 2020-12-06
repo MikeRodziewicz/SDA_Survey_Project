@@ -3,30 +3,30 @@
 {% load static%}
 {% if user.is_authenticated %}
 
-<div class="container">
        
     <li><a href="{% url 'product_create' %}">Add Product</a></li>
     <li><a href="{% url 'products_list' %}">Products List</a></li>
     <li><a href="{% url 'winners' %}">Winners</a></li>
     <li><a href="{% url 'manage_company' %}">Average</a></li>
-</div>
+
 
 {%else%}
-<div class="jumbotron">
-<div class="row col-sm-12 align-justify">
-    <div class="col-sm-6">
+<section>
+  <div class="container">
+    <div class="row" style="padding-top: 70px;">
+    <div class="col-md-6">
       <div class="card" style="width: 18rem;">
         <img src="{% static 'website/survey.png' %}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Special title treatment</h5>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="{% url 'sign_up' %}" class="btn btn-primary">Sign Up For Surveys</a>
+          <a href="{% url 'sign_up' %}" class="btn btn-success">Sign Up For Surveys</a>
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-md-6">
       <div class="card" style="width: 18rem;">
-        <img src="{% static 'website/register.jpeg' %}" class=card-img-top" alt="...">
+        <img src="{% static 'website/sign_up.jpeg' %}" class=card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Special title treatment</h5>
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -36,6 +36,7 @@
     </div>
   </div>
 </div>
+</section>
 
 {% endif %}
 {% endblock content %}

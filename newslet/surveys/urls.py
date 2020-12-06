@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import ProductCreateView, ProductListView, CompanyCreateView, CompanyListView,\
+from .views import ProductCreateView, ProductListView,\
     SurveyCreateView, winners, ProductUpdate, ProductDelete, ProductDetail, ManageCompany
 
 from .views import send_surveys
@@ -14,8 +14,6 @@ urlpatterns = [
     path('surveys/delete/<int:pk>', ProductDelete.as_view(), name='delete_product'),
     path('surveys/detail/<int:pk>', ProductDetail.as_view(), name='detail_product'),
     path('send_surveys/<int:pk>', send_surveys, name='send_surveys'),
-    path('surveys/add_company', CompanyCreateView.as_view(), name='company_create'),
-    path('surveys/companies', CompanyListView.as_view(), name='companies'),
     path('surveys/add_survey/<int:pk>', SurveyCreateView.as_view(), name='survey_create'),
     path('surveys/winners', winners, name='winners'),
     path('surveys/send_surveys/<int:pk>', views.send_surveys, name='send_surveys')

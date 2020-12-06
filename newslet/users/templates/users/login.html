@@ -1,17 +1,21 @@
 {% extends "website/base.html" %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 {% block content %}
+
+  <div class="container">
+    <div class="jumbotron text-center">
     <form method="POST">
         {% csrf_token %}
-    <div class="login-box">
-      {{ form }}
-    </div>
-    <button class="" type="submit">Log In</button>
-
-
-    <div class="">
-      <button><a href="{% url 'password-reset' %}">Forgot Your Password?</a></button>
-    </div>
+        <div class="login-box">
+          {{ form.as_p }}
+        </div>
+      <button class="btn btn-primary" type="submit">Log In</button>
     </form>
+
+    <div style="padding-top:10px;" class="">
+      <a class="btn btn-danger" href="{% url 'password-reset' %}">Forgot Your Password?</a>
+    </div>
+  </div>
+  </div>
 {% endblock %}
