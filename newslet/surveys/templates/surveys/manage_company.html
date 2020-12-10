@@ -6,47 +6,43 @@
                              
 {% if user.is_authenticated %}
 <p>Total number of users ready to take the survey: {{survey_users}}</p>
-{% if survey_users > 3%}
+{% if survey_users > 4%}
 <p>You can create a survey</p>
 {% else %}
 <p>Not enough users to start surveys</p>
 {% endif %}
 
 
-<li><a href="{% url 'product_create' %}">Add Product</a></li>
-<li><a href="{% url 'products_list' %}">Products List</a></li>
-<li><a href="{% url 'winners' %}">Winners</a></li>
-<li><a href="{% url 'manage_company' %}">Average</a></li>
-
-
-    <div class="container">
+    <div class="container"  style="padding-bottom: 70px;">
         <a href="{% url 'product_create' %}"><button type="button" class="btn btn-secondary">Add Product</button></a>
-        {% if survey_users < 5%}
+        {% if survey_users < 4%}
         <a href="{% url 'winners' %}"><button type="button" class="btn btn-info" disabled>Start Promotion</button></a>
         {% else %}
         <a href="{% url 'winners' %}"><button type="button" class="btn btn-info">Start Promotion</button></a>
         {% endif %}
     </div>
+   
+    {% for product in object_list %}
     
-                             
-                             
-    <ul>
-        {% for prod in products %}
-        <div class="container">
-          <div class="row">
-            <li> {{ prod.name.capitalize }} full rating: {{ prod | product_full_average }} </li>
-              <div class="container">
-                <div class="col">
-                    <li>Rate 1 {{ prod.name }}: {{ prod | average_rating:'rate_1' }}</li>
-                    <li>Rate 2 {{ prod.name }}: {{ prod | average_rating:'rate_2' }}</li>
-                    <li>Rate 3 {{ prod.name }}: {{ prod | average_rating:'rate_3' }}</li>
-                    <li>Rate 4 {{ prod.name }}: {{ prod | average_rating:'rate_4' }}</li>
-                    <li>Rate 5 {{ prod.name }}: {{ prod | average_rating:'rate_5' }}</li>
-                </div>
-              </div>
-          </div>
-        </div>
-        {% endfor %}
-        {% endif %}
+    <div class="container">
+
+    <ul class="list-group" style="background-color: lightgray; margin:7px;">
+      <div class="row" style="padding: 10px;">
+      <div class="col">
+      <li class="list-group-item">{% product_format product short=True %} 
+      </div>
+      <div class="col">
+        <a class="btn btn-primary" href="{% url 'detail_product' product.pk %}">Detail</a> 
+        <a class="btn btn btn-warning" href="{% url 'update_product' product.pk %}">Update</a> 
+        <a class="btn btn btn-danger" href="{% url 'delete_product' product.pk %}">Delete</a> 
+        <a class="btn btn btn-success" href="{% url 'send_surveys' product.pk %}">Send Survey</a></li> 
+      </div>
+    
+  </div>
     </ul>
+  </div>
+  
+{% endfor %}
+{% endif %}
 {% endblock %}
+

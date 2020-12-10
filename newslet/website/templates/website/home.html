@@ -3,6 +3,32 @@
 {% load static%}
 {% if user.is_authenticated %}
 
+
+
+<ul>
+  {% for prod in products %}
+  <div class="container">
+    <div class="row">
+      <li> {{ prod.name.capitalize }} full rating: {{ prod | product_full_average }} </li>
+        <div class="container">
+          <div class="col">
+              <li>Rate 1 {{ prod.name }}: {{ prod | average_rating:'rate_1' }}</li>
+              <li>Rate 2 {{ prod.name }}: {{ prod | average_rating:'rate_2' }}</li>
+              <li>Rate 3 {{ prod.name }}: {{ prod | average_rating:'rate_3' }}</li>
+              <li>Rate 4 {{ prod.name }}: {{ prod | average_rating:'rate_4' }}</li>
+              <li>Rate 5 {{ prod.name }}: {{ prod | average_rating:'rate_5' }}</li>
+          </div>
+        </div>
+    </div>
+  </div>
+  {% endfor %}
+</ul>
+
+<li><a href="{% url 'winners' %}">Winners</a></li>
+<li><a href="{% url 'manage_company' %}">Average</a></li>
+
+
+
 {%else%}
 <section>
   <div class="container">
