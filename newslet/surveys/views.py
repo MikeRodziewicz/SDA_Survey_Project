@@ -93,6 +93,9 @@ class ProductListView(LoginRequiredMixin, TitleMixin, views.generic.ListView):
     template_name = 'surveys/products_list.html'
     model = Product
 
+    def get_queryset(self):
+            return Product.objects.filter(company=self.request.user.profile.user_company)
+
 
 class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
     title = 'Add Survey'

@@ -3,13 +3,6 @@
 {% load static%}
 {% if user.is_authenticated %}
 
-       
-    <li><a href="{% url 'product_create' %}">Add Product</a></li>
-    <li><a href="{% url 'products_list' %}">Products List</a></li>
-    <li><a href="{% url 'winners' %}">Winners</a></li>
-    <li><a href="{% url 'manage_company' %}">Average</a></li>
-
-
 {%else%}
 <section>
   <div class="container">
