@@ -2,9 +2,13 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <ul>
+{% if survey_users < 3 %}
+Guest list is to short
+{% else %}
+        <ul>
         <li>{{ winners.0 }}</li>
         <li>{{ winners.1 }}</li>
         <li>{{ winners.2 }}</li>
-    </ul>
+        </ul>
+{% endif %}
 {% endblock %}

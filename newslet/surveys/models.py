@@ -24,7 +24,7 @@ class Company(models.Model):
 
 
 class Product(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     price = models.FloatField()
     product_logo = models.ImageField(default='product.jpg', upload_to='product_pics')
@@ -44,7 +44,7 @@ class Product(models.Model):
 
 
 class Survey(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     rate_1 = models.IntegerField()
     rate_2 = models.IntegerField()
     rate_3 = models.IntegerField()

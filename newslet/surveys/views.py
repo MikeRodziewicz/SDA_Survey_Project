@@ -53,6 +53,9 @@ class ManageCompany(views.generic.ListView):
             'products': Product.objects.all(),
             'survey_users': GuestSurvey.objects.all().count(),
         }
+    paginate_by = 4
+    def get_queryset(self):
+        return Product.objects.filter(company=self.request.user.profile.user_company)
 
 
 class ProductCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
@@ -92,6 +95,9 @@ class ProductListView(LoginRequiredMixin, TitleMixin, views.generic.ListView):
     title = 'Products'
     template_name = 'surveys/products_list.html'
     model = Product
+
+    def get_queryset(self):
+            return Product.objects.filter(company=self.request.user.profile.user_company)
 
 
 class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):

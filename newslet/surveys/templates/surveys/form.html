@@ -3,12 +3,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<form method="POST">
+<div class="container">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form }}
-    <button class="" type="submit">submit</button>
+    {{ form.as_p }}
+    <button class="" type="submit">Add Item</button>
     <br>
     <a class="btn btn-outline-danger" type="button" href="{% url 'website-home' %}">
         Cancel
     </a>
+</div>
 {% endblock %}
