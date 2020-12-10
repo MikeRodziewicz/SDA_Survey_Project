@@ -5,17 +5,23 @@
 {% block content %}
 
 <div class="content">
-  <div class="jumbotron">
+  <div class="container form-group" style="background-color:lightgray;">
     <form method="POST">
       {% csrf_token %}
-        <legend>Join today</legend>
-        <h2>User</h2>
-        {{ form.as_p}}
-        <h2>Company</h2>
-        {{ form_1.as_p}}
-      </fieldset>                        
-      <button class="" type="submit">Sign Up</button>
-      <button><a href="{% url 'website-home' %}">Home</a></button>
+        <fieldset class="form-group">
+          <h1 style="padding: 10px; text-align:center;">
+          Join today
+          </h1>
+          <h3 style="padding: 10px; text-align:center;">User</h3>
+            {{ form.as_table}}
+          <h3 style="padding: 10px; text-align:center;">Company</h3>
+          {{ form_1.as_table}}  
+        </fieldset>         
+      <div class="container" style="padding: 10px;">            
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+        <a class="btn btn-warning" href="{% url 'website-home' %}">Home</a>
+      </div>
+    </form>
   </div>
 </div>
 {% endblock %}

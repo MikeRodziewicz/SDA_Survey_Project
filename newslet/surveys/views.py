@@ -53,7 +53,7 @@ class ManageCompany(views.generic.ListView):
             'products': Product.objects.all(),
             'survey_users': GuestSurvey.objects.all().count(),
         }
-    paginate_by = 2
+    paginate_by = 4
     def get_queryset(self):
         return Product.objects.filter(company=self.request.user.profile.user_company)
 

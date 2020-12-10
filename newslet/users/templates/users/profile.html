@@ -1,26 +1,40 @@
 {% extends "website/base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% load crispy_forms_tags%}
 
 {% block content %}
-    <h2 class="account-heading">{{ user.username }}</h2>
-    <p class="text-secondary">{{ user.email }}</p>
-    <p>{{user.profile.user_company}}</p>
-    <img src="{{ user.profile.image.url}}" alt="">
 
-
-            <h1> Your profile</h1>
-            <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ u_form }}
-            {{ p_form.name }}
-            {{ p_form.image }}
+<div class="content">
+    <div class="container form-group" style=" background-color:gainsboro;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="content text-center">
+                    <h2 class="account-heading">Your account name: <strong>{{ user.username }}</strong></h2>
+                    <h2 class="account-heading">Your current e-mail:</h2>
+                    <p style="font-size:18px;"><strong>{{ user.email }} </strong></p> 
+                </div>
+                </div class="col-md-6">
+                <img src="{{ user.profile.image.url}}" alt="">
+                </div>
+            <div>
+                <form method="POST" enctype="multipart/form-data" class="">
+                    {% csrf_token %}
+                    
+                    {{ u_form }}
+                
+                    {{ p_form.name }}
+                    {{ p_form.image }}
+                    <h2>Your company</h2>
+                    {{ p_form.user_company }}
+                    <button type="submit">Update</button>
+                    </form>
             
 
-            <h2>Your company</h2>
-            
-            {{ p_form.user_company }}
-            <button type="submit">Update</button>
-            </form>
+            </div>
+        </div>    
+    </div>
+</div>            
 
-            <h2>Missing company? Go ahead and register your business with us</h2>
-            
+
 {% endblock %}

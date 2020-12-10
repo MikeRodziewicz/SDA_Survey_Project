@@ -5,15 +5,15 @@
 {% block content %}
                              
 {% if user.is_authenticated %}
-<p>Total number of users ready to take the survey: {{survey_users}}</p>
-{% if survey_users > 4%}
-<p>You can create a survey</p>
-{% else %}
-<p>Not enough users to start surveys</p>
-{% endif %}
+
+  <div class="content text-center">
+    <div class="jumbotron">
+        <h1>Total number of users ready to take the survey: {{survey_users}}</h1>
+    </div>
+  </div>
 
 
-    <div class="container"  style="padding-bottom: 70px;">
+    <div class="container text-center"  style="padding-bottom: 70px;">
         <a href="{% url 'product_create' %}"><button type="button" class="btn btn-secondary">Add Product</button></a>
         {% if survey_users < 4%}
         <a href="{% url 'winners' %}"><button type="button" class="btn btn-info" disabled>Start Promotion</button></a>
