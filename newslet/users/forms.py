@@ -1,4 +1,5 @@
 from django import forms
+from crispy_forms.helper import FormHelper
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
@@ -20,16 +21,25 @@ class CompanyRegisterForm(forms.ModelForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+    helper = FormHelper()
+    helper.form_show_labels = False
 
     class Meta:
         model = User
         fields = ['username', 'email']
 
+    widgets = {
+        'email': forms.EmailField(),
+        'username': forms.TextInput()
+    }
+
+
 
 class UserProfileUpdateForm(forms.ModelForm):
+    helper = FormHelper()
+    helper.form_show_labels = False
+
     class Meta:
         model = Profile
         fields = ['image','user_company']
-
 

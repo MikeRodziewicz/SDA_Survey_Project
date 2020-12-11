@@ -30,16 +30,7 @@ class CompanyForm(forms.ModelForm):
 
 
 class ProductForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.layout = Layout(
-            'name',
-            'price',
-            'product_logo',
-            Submit('submit', 'Add Product', css_class="btn-success"),
-            )
+    helper = FormHelper()
 
     class Meta:
         model = Product

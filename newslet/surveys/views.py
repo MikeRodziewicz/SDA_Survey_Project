@@ -54,6 +54,7 @@ class ManageCompany(views.generic.ListView):
             'survey_users': GuestSurvey.objects.all().count(),
         }
     paginate_by = 4
+    
     def get_queryset(self):
         return Product.objects.filter(company=self.request.user.profile.user_company)
 
@@ -62,7 +63,7 @@ class ProductCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView
     title = 'Add Product'
     form_class = ProductForm
     template_name = 'surveys/form.html'
-    success_url = reverse_lazy('website-home')
+    success_url = reverse_lazy('manage_company')
 
 
 class ProductUpdate(LoginRequiredMixin, TitleMixin, views.generic.UpdateView):
@@ -70,13 +71,13 @@ class ProductUpdate(LoginRequiredMixin, TitleMixin, views.generic.UpdateView):
     form_class = ProductForm
     template_name = 'surveys/form.html'
     model = Product
-    success_url = reverse_lazy('website-home')
+    success_url = reverse_lazy('manage_company')
 
 
 class ProductDelete(LoginRequiredMixin, TitleMixin, views.generic.DeleteView):
     template = 'surveys/product_confirm_delete.html'
     model = Product
-    success_url = reverse_lazy('products_list')
+    success_url = reverse_lazy('manage_company')
 
     def get_title(self):
         safe_title = escape(self.object.name)
