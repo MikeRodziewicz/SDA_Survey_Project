@@ -1,7 +1,7 @@
 from django.template import Library
 from django.utils.html import escape
 from django.utils.safestring import SafeString
-from surveys.models import Survey
+from surveys.models import Survey, Product
 from django.db.models import Avg
 
 register = Library()
@@ -39,3 +39,15 @@ def product_full_average(product):
         for num in range(5):
             rating.append(average_rating(product, 'rate_' + str(num + 1)))
         return round(sum(rating)/len(rating), 1)
+
+
+def select_max_average():
+    products = Product.objects.all()
+    max_rate_list = []
+    if Survey.objects.all().count() == 0:
+        return f'no surveys'
+    else:
+        for product in products:
+            max_rate_list.append(product_full_average(product))
+    max_rate_list = sorted(max_rate_list)
+    return max_rate_list
