@@ -43,11 +43,23 @@ def product_full_average(product):
 
 def select_max_average():
     products = Product.objects.all()
-    max_rate_list = []
+    max_rate_list = {}
     if Survey.objects.all().count() == 0:
-        return f'no surveys'
+        return f'No Surveys Yet'
     else:
         for product in products:
-            max_rate_list.append(product_full_average(product))
-    max_rate_list = sorted(max_rate_list)
+            max_rate_list[product.name] = product_full_average(product)
+    sorted(max_rate_list.items(), key=lambda x: x[1], reverse=True)
+    return max_rate_list
+
+
+def select_min_average():
+    products = Product.objects.all()
+    max_rate_list = {}
+    if Survey.objects.all().count() == 0:
+        return f'No Surveys Yet'
+    else:
+        for product in products:
+            max_rate_list[product.name] = product_full_average(product)
+    sorted(max_rate_list.items(), key=lambda x: x[1], reverse=False)
     return max_rate_list

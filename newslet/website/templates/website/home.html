@@ -17,7 +17,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <table class="table table-hover table-secondary">
+      <table class="table table-hover table-primary">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -39,12 +39,52 @@
             </tr>
           </tbody>
         </table>      
+
+        <table class="table table-hover table-success">
+          <thead>
+            <tr>
+              <th scope="col">Top 5</th>
+            </tr>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for key, value in max_avg.items %}
+            <tr>
+            <th scope="row">{{ key }}</th>
+            <td>{{value}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <table class="table table-hover table-danger">
+          <thead>
+            <tr>
+              <th scope="col">Bottom 5</th>
+            </tr>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for key, value in min_avg.items %}
+            <tr>
+            <th scope="row">{{ key }}</th>
+            <td>{{value}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
     </div>
 
 
-
     <div class="col-md-6">
-      <table class="table table-hover table-success">
+      <table class="table table-hover table-warning">
         <thead>
           <tr>
             <th scope="col">Product</th>
@@ -61,12 +101,9 @@
                    
           </tbody>
         </table>
-        {{max_avg}}
     </div>
   </div>
 </div>
-
-
 
 
 
