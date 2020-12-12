@@ -6,20 +6,16 @@ import random
 def random_users_emails_list():
     winners = []
     if len(GuestSurvey.objects.all()) < 3:
-        return None
         return
     else:
         while True:
             user = GuestSurvey.objects.all().values('quest_email')[random.randint(1, len(GuestSurvey.objects.all()))-1]['quest_email']
-            if user in winners:
+            if len(winners) >= 3:
+                return winners
+            elif user in winners:
                 continue
-            elif len(winners) >= 3:
-                if len(winners) >= 3:
-                    return winners
-                elif user in winners:
-                    continue
-                else:
-                    winners.append(user)
+            else:
+                winners.append(user)
 
 
 def random_user_email():
