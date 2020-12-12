@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UserRegister, UserProfileUpdateForm, UserUpdateForm, CompanyRegisterForm
+from .forms import UserRegister, UserProfileUpdateForm, UserUpdateForm, CompanyRegisterForm, CompanyUpdateForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -29,17 +29,20 @@ def profile(request):
         p_form = UserProfileUpdateForm(request.POST,
                                         request.FILES,
                                         instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid():
+        c_form = CompanyUpdateForm(request.POST, instance=request.user.profile.user_company)                                        
+        if u_form.is_valid() and p_form.is_valid() and c_form.is_valid():
             u_form.save()
             p_form.save()
+            c_form.save()
             return redirect('website-home')
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = UserProfileUpdateForm(instance=request.user.profile)
-
+        c_form = CompanyUpdateForm(instance=request.user.profile.user_company)  
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'c_form': c_form,
     }
 
     return render(request, 'users/profile.html',context)

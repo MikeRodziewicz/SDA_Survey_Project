@@ -2,8 +2,9 @@
 {% load static %}
 {% load crispy_forms_tags%}
 {% load bootstrap4 %}
-{% crispy u_form form.helper }
-{% crispy p_form form.helper }
+{% crispy u_form form.helper %}
+{% crispy p_form form.helper %}
+{% crispy c_form form.helper %}
 {% block content %}
 
 <div class="content">
@@ -24,14 +25,9 @@
                     {% csrf_token %}
                     {% crispy u_form %}
                     {% crispy p_form %}  
-
-                    {{ p_form.name }}
-                    {{ p_form.image }}
-                    <h2>Your company</h2>
-                    {{ p_form.user_company }}
-                    <div class="", style="padding:10px;"> 
-                        <div class="input-group-btn">            
-                        <button class="btn btn-warning" type="submit">Update</button>
+                    {% crispy c_form %}                  
+                        <button class="btn btn-warning" style="margin-bottom:10px;" type="submit">Update</button>
+                </form>
                     </div>   
                     </div>
                 </form>

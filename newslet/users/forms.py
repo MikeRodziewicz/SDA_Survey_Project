@@ -20,26 +20,26 @@ class CompanyRegisterForm(forms.ModelForm):
         fields = ['name', 'address_one', 'address_two']
 
 
+class CompanyUpdateForm(forms.ModelForm):
+    helper = FormHelper()
+
+    class Meta:
+        model = Company
+        fields = ['address_one', 'address_two']
+
+
 class UserUpdateForm(forms.ModelForm):
     helper = FormHelper()
-    helper.form_show_labels = False
 
     class Meta:
         model = User
         fields = ['username', 'email']
 
-    widgets = {
-        'email': forms.EmailField(),
-        'username': forms.TextInput()
-    }
-
-
 
 class UserProfileUpdateForm(forms.ModelForm):
     helper = FormHelper()
-    helper.form_show_labels = False
 
     class Meta:
         model = Profile
-        fields = ['image','user_company']
+        fields = ['image']
 
