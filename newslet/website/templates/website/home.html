@@ -2,28 +2,9 @@
 {% block content %}
 {% load static%}
 {% load surveys_extra %}
+
 {% if user.is_authenticated %}
 
-<ul>
-  {% for prod in products %}
-  <div class="container">
-    <div class="row">
-      <li> {{ prod.name.capitalize }} full rating: {{ prod | product_full_average }} </li>
-        <div class="container">
-          <div class="col">
-            {% if prod.id in survey_product_id %}
-              <li>Rate 1 {{ prod.name }}: {{ prod | average_rating:'rate_1' }}</li>
-              <li>Rate 2 {{ prod.name }}: {{ prod | average_rating:'rate_2' }}</li>
-              <li>Rate 3 {{ prod.name }}: {{ prod | average_rating:'rate_3' }}</li>
-              <li>Rate 4 {{ prod.name }}: {{ prod | average_rating:'rate_4' }}</li>
-              <li>Rate 5 {{ prod.name }}: {{ prod | average_rating:'rate_5' }}</li>
-              {% endif %}
-          </div>
-        </div>
-    </div>
-  </div>
-  {% endfor %}
-</ul>
 
 <div class="container text-center">
   <div class="jumbotron", style="background-color:gainsboro;">
@@ -36,7 +17,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <table class="table table-hover">
+      <table class="table table-hover table-secondary">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -59,8 +40,27 @@
           </tbody>
         </table>      
     </div>
-    <div class="col-md-6">
 
+
+
+    <div class="col-md-6">
+      <table class="table table-hover table-success">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Avg Score</th>
+          </tr>
+        </thead>
+          <tbody>
+            {% for prod in products %}
+            <tr>
+            <th scope="row">{{ prod.name.capitalize }}</th>
+            <td>{{ prod | product_full_average }}</td>
+            </tr>
+            {% endfor %}
+                   
+          </tbody>
+        </table>     
     </div>
   </div>
 </div>
@@ -98,5 +98,6 @@
 </section>
 
 {% endif %}
+
 {% endblock content %}
  
