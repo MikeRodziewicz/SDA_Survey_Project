@@ -8,14 +8,18 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 from website.models import GuestSurvey
+from .stats import survey_users_all, products_all, surveys_taken_all
 
 
 def home(request):
-    return render(request, 'website/home.html')
-     
+    context = {
+        'survey_users_all':survey_users_all,
+        'products_all':products_all,
+        'surveys_taken_all':surveys_taken_all
+    }
 
-# def about(request):
-#     return render(request, 'website/about.html')
+    return render(request, 'website/home.html', context)
+     
 
 
 def sign_up(request):

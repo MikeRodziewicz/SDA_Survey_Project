@@ -23,7 +23,47 @@
   {% endfor %}
 </ul>
 
-<li><a href="{% url 'manage_company' %}">Average</a></li>
+<div class="container text-center">
+  <div class="jumbotron", style="background-color:gainsboro;">
+    <h1 style="color:palevioletred;">Check out the stats of your company</h1>
+    <p>Make sure you are up to the date with your client satisfaction!</p>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr>
+            <th scope="row">Users ready to take the survey</th>
+            <td>{{survey_users_all}}</td>
+            </tr>
+            <tr>
+            <th scope="row">All registered products</th>
+            <td>{{products_all}}</td>
+            </tr>
+            <tr>
+            <th scope="row">Completed Surveys</th>
+            <td>{{surveys_taken_all}}</td>
+            </tr>
+          </tbody>
+        </table>      
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+</div>
+
+
 
 
 
@@ -35,8 +75,8 @@
       <div class="card" style="width: 18rem;">
         <img src="{% static 'website/survey.png' %}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <h5 class="card-title">Influence the Opinion</h5>
+          <p class="card-text">Sign up to receive the surveys - complete them to win awards!.</p>
           <a href="{% url 'sign_up' %}" class="btn btn-success">Sign Up For Surveys</a>
         </div>
       </div>
@@ -45,8 +85,8 @@
       <div class="card" style="width: 18rem;">
         <img src="{% static 'website/sign_up.jpeg' %}" class=card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <h5 class="card-title">Start Surveying</h5>
+          <p class="card-text">Register your business, send out surveys - get feedback.</p>
           <a href="{% url 'users-register' %}" class="btn btn-primary">Register Company</a>
         </div>
       </div>
