@@ -11,6 +11,7 @@ from website.models import GuestSurvey
 from surveys.models import Product
 from .stats import survey_users_all, products_all, surveys_taken_all
 from surveys.templatetags.surveys_extra import *
+from surveys.templatetags.surveys_extra import select_max_average
 
 
 def home(request):  
@@ -21,6 +22,7 @@ def home(request):
         'products': Product.objects.all(),
         'survey_product_id': Survey.objects.all().values_list('product_id', flat=True),
         'survey_users': Survey.objects.all().count(),
+        'max_avg': select_max_average()
     }
 
     return render(request, 'website/home.html', context)
