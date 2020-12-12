@@ -101,17 +101,32 @@ class ProductListView(LoginRequiredMixin, TitleMixin, views.generic.ListView):
     model = Product
 
     def get_queryset(self):
-            return Product.objects.filter(company=self.request.user.profile.user_company)
+        return Product.objects.filter(company=self.request.user.profile.user_company)
 
 
 class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView):
-    title = 'Add Survey'
     form_class = SurveyForm
-    template_name = 'surveys/form.html'
+    template_name = 'surveys/survey_form.html'
     success_url = reverse_lazy('website-home')
+    image = None
 
     def form_valid(self, form):
         form.instance.product_id = self.kwargs['pk']
         return super().form_valid(form)
 
+    def get_title(self):
+        pk = self.kwargs['pk']
+        title = escape(Product.objects.filter(id=pk).values('name')[0]['name'])
+        return SafeString(title.capitalize())
 
+    def get_image(self):
+        pk = self.kwargs['pk']
+        image = Product.objects.filter(id=pk).values('product_logo')[0]['product_logo']
+        return image
+
+    def get_context_data(self, **kwargs):
+        result = super().get_context_data(**kwargs)
+        image = self.get_image()
+        if image is not None:
+            result['image'] = image
+        return result
