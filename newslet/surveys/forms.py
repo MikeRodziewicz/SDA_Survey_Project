@@ -82,7 +82,7 @@ class SurveyForm(forms.ModelForm):
 
     class Meta:
         model = Survey
-        fields = '__all__'
+        exclude = ['product']
 
     rate_1 = forms.IntegerField(min_value=1, max_value=5)
     rate_2 = forms.IntegerField(min_value=1, max_value=5)
