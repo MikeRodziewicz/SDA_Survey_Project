@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from website.models import GuestSurvey
 from django.contrib.auth.decorators import login_required
 from django import views
 from django.urls import reverse_lazy
@@ -19,14 +18,17 @@ from website.models import GuestSurvey
 
 
 from .forms import ProductForm, CompanyForm, SurveyForm
-from .models import Product, Company
+from .models import Product, Company, Survey
 from .random_users import random_users_emails_list
 
 
 def winners(request):
     return render(
         request, template_name='surveys/random_users.html',
-        context={'winners': random_users_emails_list()}
+        context={
+            'winners': random_users_emails_list(),
+            'survey_users': GuestSurvey.objects.all().count()
+        }
     )
 
 
@@ -52,6 +54,7 @@ class ManageCompany(views.generic.ListView):
     extra_context = {
             'products': Product.objects.all(),
             'survey_users': GuestSurvey.objects.all().count(),
+            'survey_product_id': Survey.objects.all().values_list('product_id', flat=True)
         }
     paginate_by = 4
     
@@ -105,11 +108,10 @@ class SurveyCreateView(LoginRequiredMixin, TitleMixin, views.generic.CreateView)
     title = 'Add Survey'
     form_class = SurveyForm
     template_name = 'surveys/form.html'
+    success_url = reverse_lazy('website-home')
 
     def form_valid(self, form):
         form.instance.product_id = self.kwargs['pk']
         return super().form_valid(form)
-    
-    success_url = reverse_lazy('website-home')
 
 
