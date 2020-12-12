@@ -23,7 +23,7 @@ from .random_users import random_users_emails_list
 
 
 def winners(request):
-    template_name = 'surveys/winners.html'
+    template_name = render_to_string('surveys/winners.html')
     winners = GuestSurvey.objects.all().order_by("?").values_list('quest_email', flat=True).first()
 
     email = EmailMessage(
@@ -49,6 +49,7 @@ def send_surveys(request, pk):
     settings.EMAIL_HOST_USER,
     bcc=receipients,
     )
+    email.content_subtype = 'html'
     email.fail_silently=False
     email.send()
 
