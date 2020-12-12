@@ -1,0 +1,16 @@
+{% extends "website/base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="content text-center">
+    <div class="jumbotron alert alert-success">
+        {% if messages %}
+        {% for message in messages%}
+            {{message}}
+        {% endfor %}
+        {% endif %}
+       
+    </div>
+    <a class="btn btn-warning" type="button" href="{% url 'manage_company' %}">Return</a>
+</div>
+{% endblock %}

@@ -23,13 +23,21 @@ from .random_users import random_users_emails_list
 
 
 def winners(request):
-    return render(
-        request, template_name='surveys/random_users.html',
-        context={
-            'winners': random_users_emails_list(),
-            'survey_users': GuestSurvey.objects.all().count()
-        }
+    template_name = 'surveys/winners.html'
+    winners = GuestSurvey.objects.all().order_by("?").values_list('quest_email', flat=True).first()
+
+    email = EmailMessage(
+    'Contratulations You Won!',
+    template_name,
+    settings.EMAIL_HOST_USER,
+    bcc=[winners],
     )
+    email.content_subtype = 'html'
+    email.fail_silently=False
+    email.send()
+
+    messages.success(request,f'The winner is {winners}!')
+    return render(request, 'surveys/winners_promo.html', context={'winners':winners})
 
 
 def send_surveys(request, pk):
