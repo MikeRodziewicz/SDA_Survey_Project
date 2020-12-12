@@ -23,13 +23,19 @@ def attr_as_p(obj, attrname):
 
 @register.filter
 def average_rating(product, rate_number: str):
-    return round(Survey.objects.filter(product_id=product.id).aggregate(Avg(rate_number))
-                 ['rate_' + rate_number[-1] + '__avg'], 1)
+    if Survey.objects.all().count() == 0:
+        return f'No surveys'
+    else:
+        return round(Survey.objects.filter(product_id=product.id).aggregate(Avg(rate_number))
+                    ['rate_' + rate_number[-1] + '__avg'], 1)
 
 
 @register.filter
 def product_full_average(product):
     rating = []
-    for num in range(5):
-        rating.append(average_rating(product, 'rate_' + str(num + 1)))
-    return round(sum(rating)/len(rating), 1)
+    if Survey.objects.all().count() == 0:
+        return f'No surveys'
+    else:
+        for num in range(5):
+            rating.append(average_rating(product, 'rate_' + str(num + 1)))
+        return round(sum(rating)/len(rating), 1)
