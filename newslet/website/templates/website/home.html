@@ -51,10 +51,10 @@
             </tr>
           </thead>
           <tbody>
-            {% for key, value in max_avg.items %}
+            {% for name, avg in max_avg %}
             <tr>
-            <th scope="row">{{ key }}</th>
-            <td>{{value}}</td>
+            <th scope="row">{{ name }}</th>
+            <td>{{avg}}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -71,10 +71,10 @@
             </tr>
           </thead>
           <tbody>
-            {% for key, value in min_avg.items %}
+            {% for name, avg in min_avg %}
             <tr>
-            <th scope="row">{{ key }}</th>
-            <td>{{value}}</td>
+            <th scope="row">{{ name }}</th>
+            <td>{{avg}}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -105,9 +105,8 @@
   </div>
 </div>
 
-
-
 {%else%}
+
 <section>
   <div class="container">
     <div class="row" style="padding-top: 70px;">

@@ -2,7 +2,9 @@ from django.template import Library
 from django.utils.html import escape
 from django.utils.safestring import SafeString
 from surveys.models import Survey, Product
-from django.db.models import Avg
+from django.db.models import Avg, Sum, F
+from operator import itemgetter
+from django.db.models import Count
 
 register = Library()
 
@@ -33,7 +35,7 @@ def average_rating(product, rate_number: str):
 @register.filter
 def product_full_average(product):
     rating = []
-    if Survey.objects.all().count() == 0:
+    if Survey.objects.filter(product_id=product.id).count() == 0:
         return f'No surveys'
     else:
         for num in range(5):
@@ -41,25 +43,16 @@ def product_full_average(product):
         return round(sum(rating)/len(rating), 1)
 
 
-def select_max_average():
-    products = Product.objects.all()
-    max_rate_list = {}
-    if Survey.objects.all().count() == 0:
-        return f'No Surveys Yet'
-    else:
-        for product in products:
-            max_rate_list[product.name] = product_full_average(product)
-    sorted(max_rate_list.items(), key=lambda x: x[1], reverse=True)
-    return max_rate_list
+def product_averages(products):
+    products = products.annotate(survey_count=Count('survey'), 
+                                        avg_rate_1=Avg('survey__rate_1'),
+                                        avg_rate_2=Avg('survey__rate_2'),
+                                        avg_rate_3=Avg('survey__rate_3'),
+                                        avg_rate_4=Avg('survey__rate_4'),
+                                        avg_rate_5=Avg('survey__rate_5'),
+                                        total_avg = (F('avg_rate_1')+F('avg_rate_2')+F('avg_rate_3')
+                                        +F('avg_rate_4')+F('avg_rate_5'))/5).filter(survey_count__gte=1).order_by('-total_avg')
+    avarage_rate_list = [(product.name, product.total_avg) for product in products]
+    return avarage_rate_list[:5], avarage_rate_list[-5:]
 
 
-def select_min_average():
-    products = Product.objects.all()
-    max_rate_list = {}
-    if Survey.objects.all().count() == 0:
-        return f'No Surveys Yet'
-    else:
-        for product in products:
-            max_rate_list[product.name] = product_full_average(product)
-    sorted(max_rate_list.items(), key=lambda x: x[1], reverse=False)
-    return max_rate_list
